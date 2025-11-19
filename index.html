@@ -152,6 +152,18 @@
   text-align: center;
   font-weight: 500;
 }
+
+/* Logo Instagram clickable */
+.logo-ig {
+  width: 20px;  /* ukuran logo */
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Optional: hover effect */
+.logo-ig:hover {
+  opacity: 0.8;
+}
         
     </style>
 </head>
@@ -188,6 +200,9 @@
 </div>
 
     <footer2>
+    <a href="https://www.instagram.com/telyxomedia?igsh=MThldWpsMGJocXhiMQ==" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="logo-ig">
+</a>
         &copy; 2025 Web Berita. All rights reserved.
     </footer2>
     
@@ -300,6 +315,20 @@ cards.forEach((card, index) => {
     window.location.href = newsPages[index];
   });
 });
+
+const footer = document.querySelector('footer'); // misal taruh di footer
+
+const igLink = document.createElement('a');
+igLink.href = 'https://www.instagram.com/username';
+igLink.target = '_blank';
+
+const igLogo = document.createElement('img');
+igLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg';
+igLogo.alt = 'Instagram';
+igLogo.className = 'logo-ig';
+
+igLink.appendChild(igLogo);
+footer.appendChild(igLink);
 
 </script>
 

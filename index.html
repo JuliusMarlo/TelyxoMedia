@@ -55,6 +55,26 @@
     font-size: 10px;
     font-weight: 400;
 }
+/* Container logo IG */
+.header-right {
+  display: inline-block;       /* biar bisa diatur posisi */
+  position: absolute;          /* posisinya bebas di header */
+  right: 118px;                 /* jarak dari kanan header */
+  bottom: 50px;
+  top: 8%;                    /* vertikal rata tengah */
+  transform: translateY(-8%); /* agar tepat di tengah vertikal */
+}
+
+/* Logo IG */
+.header-right .logo-ig {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.header-right .logo-ig:hover {
+  opacity: 0.8;
+}
 
         /* Footer */
         footer1 {
@@ -69,7 +89,6 @@
         footer2 {
             background-color: #626F78;
             color: white;
-            text-align: center;
             padding: 20px;
             position: fixed;
             bottom: 0;
@@ -152,18 +171,6 @@
   text-align: center;
   font-weight: 500;
 }
-
-/* Logo Instagram clickable */
-.logo-ig {
-  width: 20px;  /* ukuran logo */
-  height: 20px;
-  cursor: pointer;
-}
-
-/* Optional: hover effect */
-.logo-ig:hover {
-  opacity: 0.8;
-}
         
     </style>
 </head>
@@ -175,6 +182,11 @@
         <div class="header-text">
             <h1>TelyxoMedia</h1>
             <h2>Berita Bitcoin & Crypto</h2>
+           <div class="header-right">
+           <a href="https://www.instagram.com/telyxomedia?igsh=MThldWpsMGJocXhiMQ==" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="logo-ig">
+</a>
+           </div>
         </div>
     </div>
     </header>
@@ -186,24 +198,21 @@
     
 <div class="news-carousel">
   <div class="news-card">
-    <img src=".jpg" alt="Berita 1">
+    <img src="berita1.jpg" alt="Berita 1">
     <p>J</p>
   </div>
   <div class="news-card">
-    <img src=".jpg" alt="Berita 2">
+    <img src="berita2.jpg" alt="Berita 2">
     <p>J</p>
   </div>
   <div class="news-card">
-    <img src=".jpg" alt="Berita 3">
+    <img src="berita3.jpg" alt="Berita 3">
     <p>J</p>
   </div>
 </div>
 
     <footer2>
-    <a href="https://www.instagram.com/telyxomedia?igsh=MThldWpsMGJocXhiMQ==" target="_blank">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="logo-ig">
-</a>
-        &copy; 2025 Web Berita. All rights reserved.
+       &copy; 2025 Web Berita. All rights reserved.
     </footer2>
     
     <script>
@@ -316,7 +325,13 @@ cards.forEach((card, index) => {
   });
 });
 
-const footer = document.querySelector('footer'); // misal taruh di footer
+const header = document.querySelector('.header');
+
+// pastikan header menjadi acuan posisi
+header.style.position = 'relative';  // AMPuh, tapi tidak mengubah layout
+
+const rightDiv = document.createElement('div');
+rightDiv.className = 'header-right';
 
 const igLink = document.createElement('a');
 igLink.href = 'https://www.instagram.com/username';
@@ -328,7 +343,9 @@ igLogo.alt = 'Instagram';
 igLogo.className = 'logo-ig';
 
 igLink.appendChild(igLogo);
-footer.appendChild(igLink);
+rightDiv.appendChild(igLink);
+
+header.appendChild(rightDiv);
 
 </script>
 

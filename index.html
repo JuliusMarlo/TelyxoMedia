@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TelyxoMedia</title>
     <style>
-        /* Reset margin & padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
         body {
             background-color: #f5f5f5;
             color: #333;
+            margin: 0;
+            padding: 0;
         }
 
         /* Header */
@@ -63,93 +57,100 @@
 }
 
         /* Footer */
-        footer {
+        footer1 {
+        background-color: #3D3D3D;
+        text-align: center;
+        color: white;
+        padding: 10px;
+        position: fixed;
+        width: 100%;
+        }
+        
+        footer2 {
             background-color: #626F78;
             color: white;
             text-align: center;
-            padding: 15px 20px;
+            padding: 20px;
             position: fixed;
             bottom: 0;
             width: 100%;
         }
         
-        /* Harga Crypto */
-.crypto-prices {
-  padding: 20px;
+        #crypto-prices {
+    background: #4f5b66;
+    padding: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    width: 90%;
+    margin-top: 7px;
 }
 
-.price-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+.crypto-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.crypto-item:last-child {
+    border-bottom: none;
+}
+
+.green {
+    color: #4cff4c;
+}
+
+.red {
+    color: #ff6b6b;
+}
+
+/* Container horizontal scroll */
+.news-carousel {
+  display: flex;
+  overflow-x: auto;
   gap: 16px;
-  margin-top: 16px;
+  margin-top: 300px;
+  padding: 16px;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
 }
 
-.price-card {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.news-carousel::-webkit-scrollbar {
+  display: none;
 }
 
-.price-card .coin-name {
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.price-card .coin-price {
-  font-size: 1.4em;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.price-card .coin-change {
-  font-size: 0.9em;
-}
-
-/* Warna naik/turun */
-.price-card .coin-change.up { color: #138000; }
-.price-card .coin-change.down { color: #c62828; }
-
-/* Berita Crypto */
-.crypto-news {
-  padding: 20px;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
-  margin-top: 16px;
-}
-
+/* Card berita */
 .news-card {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  flex: 0 0 200px; /* card lebar tetap */
+  background-color: #D3D3D3;
+  border-radius: 12px;
+  overflow: hidden;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-.news-card h3 {
-  font-size: 1.1em;
-  margin-bottom: 8px;
+.news-card:hover {
+  transform: translateY(-5px); /* efek hover */
 }
 
+/* Gambar besar di atas */
+.news-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+/* Konten teks */
 .news-card p {
-  font-size: 0.95em;
-  color: #444;
-}
-
-.news-card .news-meta {
-  margin-top: 12px;
-  font-size: 0.8em;
-  color: #666;
+  font-size: 14px;
+  margin: 8px;
+  text-align: center;
+  font-weight: 500;
 }
         
     </style>
@@ -164,127 +165,142 @@
             <h2>Berita Bitcoin & Crypto</h2>
         </div>
     </div>
-
-<!-- Bagian Harga Crypto -->
-<section class="crypto-prices">
-  <h2>Harga Crypto Real-Time</h2>
-  <div id="priceContainer" class="price-grid">
-    <!-- Card harga akan di-render di sini via JS -->
+    </header>
+    
+    <footer1>
+    Harga Bitcoin & Crypto
+    <div id="crypto-prices"></div>
+    </footer1>
+    
+<div class="news-carousel">
+  <div class="news-card">
+    <img src=".jpg" alt="Berita 1">
+    <p>J</p>
   </div>
-</section>
-
-<!-- Bagian Berita Crypto -->
-<section class="crypto-news">
-  <h2>Berita & Update Crypto</h2>
-  <div id="newsContainer" class="news-grid">
-    <!-- Card berita akan di-render di sini via JS -->
+  <div class="news-card">
+    <img src=".jpg" alt="Berita 2">
+    <p>J</p>
   </div>
-</section>
+  <div class="news-card">
+    <img src=".jpg" alt="Berita 3">
+    <p>J</p>
+  </div>
+</div>
 
-    <footer>
+    <footer2>
         &copy; 2025 Web Berita. All rights reserved.
-    </footer>
+    </footer2>
     
     <script>
-    // Daftar koin (gunakan ID dari CoinGecko)
-const COINS = [
-  { id: 'bitcoin', symbol: 'BTC' },
-  { id: 'ethereum', symbol: 'ETH' },
-  { id: 'solana', symbol: 'SOL' },
-  { id: 'binancecoin', symbol: 'BNB' }
+async function loadPrices() {
+    const container = document.getElementById("crypto-prices");
+    if (!container) return;
+
+    try {
+        // daftar coin (bisa ditambah sesuka kamu)
+        const coins = [
+            { id: "bitcoin", name: "Bitcoin (BTC)" },
+            { id: "ethereum", name: "Ethereum (ETH)" },
+            { id: "solana", name: "Solana (SOL)" },
+            { id: "binancecoin", name: "BNB" },
+            { id: "ripple", name: "XRP" },
+            { id: "dogecoin", name: "Dogecoin (DOGE)" },
+        ];
+
+        const ids = coins.map(c => c.id).join(",");
+
+        const url =
+            `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
+
+        const res = await fetch(url, { cache: "no-store" });
+        const data = await res.json();
+
+        let html = "";
+        coins.forEach(c => {
+            const price = data[c.id].usd;
+            const change = data[c.id].usd_24h_change.toFixed(2);
+
+            html += `
+                <div class="crypto-item">
+                    <span>${c.name}</span>
+                    <span class="${change >= 0 ? 'green' : 'red'}">
+                        $${price.toLocaleString()} (${change}%)
+                    </span>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+
+    } catch (err) {
+        container.innerHTML = "<div style='color:#ff6b6b;'>Gagal memuat harga...</div>";
+    }
+}
+
+// load pertama kali
+loadPrices();
+
+// update 15 detik sekali
+setInterval(loadPrices, 15000);
+
+const carousel = document.querySelector('.news-carousel');
+
+if (carousel) {
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  carousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+  });
+
+  carousel.addEventListener('mouseleave', () => isDown = false);
+  carousel.addEventListener('mouseup', () => isDown = false);
+
+  carousel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - startX;
+    const walk = x * 2;
+    carousel.scrollLeft = scrollLeft - walk;
+  });
+
+  // swipe mobile
+  let touchStartX = 0;
+  let touchScrollLeft = 0;
+
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].pageX;
+    touchScrollLeft = carousel.scrollLeft;
+  });
+
+  carousel.addEventListener('touchmove', (e) => {
+    const x = e.touches[0].pageX;
+    const walk = touchStartX - x;
+    carousel.scrollLeft = touchScrollLeft + walk;
+  });
+}
+
+// URL halaman berita sesuai urutan card
+const newsPages = [
+  'berita1.html',
+  'berita2.html',
+  'berita3.html'
 ];
 
-// Fungsi format mata uang USD
-function formatUSD(num) {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
-    .format(num);
-}
+// Ambil semua card
+const cards = document.querySelectorAll('.news-card');
 
-// Membuat struktur card harga di DOM
-function initPriceCards() {
-  const container = document.getElementById('priceContainer');
-  container.innerHTML = '';
-  COINS.forEach(coin => {
-    const card = document.createElement('div');
-    card.className = 'price-card';
-    card.id = `price-${coin.id}`;
-    card.innerHTML = `
-      <div class="coin-name">${coin.symbol}</div>
-      <div class="coin-price">Loading...</div>
-      <div class="coin-change">–</div>
-    `;
-    container.appendChild(card);
+cards.forEach((card, index) => {
+  card.style.cursor = 'pointer'; // ubah pointer agar terlihat klikable
+  card.addEventListener('click', () => {
+    // arahkan ke halaman berita sesuai urutan
+    window.location.href = newsPages[index];
   });
-}
+});
 
-// Fetch harga dari CoinGecko
-async function fetchPrices() {
-  try {
-    const ids = COINS.map(c => c.id).join(',');
-    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
-    const resp = await fetch(url);
-    const data = await resp.json();
-    COINS.forEach(coin => {
-      const price = data[coin.id]?.usd;
-      const change = data[coin.id]?.usd_24h_change;
-      const card = document.getElementById(`price-${coin.id}`);
-      if (card) {
-        card.querySelector('.coin-price').innerText = price !== undefined
-          ? formatUSD(price)
-          : '–';
-        if (change !== undefined) {
-          const changeNode = card.querySelector('.coin-change');
-          const sign = change >= 0 ? '+' : '';
-          changeNode.innerText = `${sign}${change.toFixed(2)}%`;
-          changeNode.className = 'coin-change ' + (change >= 0 ? 'up' : 'down');
-        }
-      }
-    });
-  } catch (err) {
-    console.error('Error fetchPrices:', err);
-  }
-}
-
-// Fetch berita / status update dari CoinGecko
-async function fetchNews(limit = 3) {
-  try {
-    const url = `https://api.coingecko.com/api/v3/status_updates?per_page=${limit}`;
-    const resp = await fetch(url);
-    const data = await resp.json();
-    const updates = data.status_updates || [];
-    renderNews(updates.slice(0, limit));
-  } catch (err) {
-    console.error('Error fetchNews:', err);
-  }
-}
-
-// Render card berita ke DOM
-function renderNews(updates) {
-  const container = document.getElementById('newsContainer');
-  container.innerHTML = '';
-  updates.forEach(u => {
-    const card = document.createElement('div');
-    card.className = 'news-card';
-    const title = u.title || '(no title)';
-    const desc = u.description || '';
-    const time = u.created_at ? new Date(u.created_at).toLocaleString() : '';
-    card.innerHTML = `
-      <h3>${title}</h3>
-      <p>${desc}</p>
-      <div class="news-meta">${time}</div>
-    `;
-    container.appendChild(card);
-  });
-}
-
-// Inisialisasi & loop update
-initPriceCards();
-fetchPrices();
-fetchNews(3);
-
-// Update berkala
-setInterval(fetchPrices, 15000);  // 15 detik
-setInterval(() => fetchNews(3), 60000);  // 60 detik
 </script>
 
 </body>

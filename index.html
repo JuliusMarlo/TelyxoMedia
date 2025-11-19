@@ -1,130 +1,172 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TelyxoMedia</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
-<style>
-body {margin:0; font-family:Arial, sans-serif; background:#f4f4f4; color:#222;}
-header {background:#111; color:white; padding:15px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:1000;}
-header h1{margin:0; font-size:1.3rem;}
-.menu-btn{font-size:28px; cursor:pointer;}
-#sidebar{position:fixed; top:0; left:-260px; width:240px; height:100vh; background:#222; color:white; padding:20px; transition:.3s ease; z-index:999;}
-#sidebar.active{left:0;}
-#sidebar h3{margin-top:0;}
-#sidebar a{display:block; color:white; text-decoration:none; padding:10px 0; border-bottom:1px solid #333;}
-.container{padding:15px; max-width:900px; margin:auto;}
-.card{background:white; padding:15px; margin-bottom:15px; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-.coin-list div{display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee; transition: all 0.5s ease;}
-.coin-value-up{animation:up 0.5s; color:lime; font-weight:bold;}
-.coin-value-down{animation:down 0.5s; color:red; font-weight:bold;}
-@keyframes up{0%{transform:translateY(10px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
-@keyframes down{0%{transform:translateY(-10px);opacity:0;}100%{transform:translateY(0);opacity:1;}}
-.flash-up{background-color:rgba(0,255,0,0.2); transition: background-color 0.5s;}
-.flash-down{background-color:rgba(255,0,0,0.2); transition: background-color 0.5s;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TelyxoMedia</title>
+    <style>
+        /* Reset margin & padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+    background-color: #000000;
+    color: white;
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Jarak antara logo dan teks */
+}
+
+.logo {
+    width: 40px;   /* Bebas mau berapa */
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px; /* Opsional */
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-text h1,
+.header-text h2 {
+    margin: 0;
+}
+
+.header-text h1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header-text h2 {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.menu {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+        /* Hamburger menu */
+        .menu {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu div {
+            width: 20px;
+            height: 3px;
+            background-color: white;
+        }
+
+        /* Main content */
+        main {
+            padding: 20px;
+        }
+
+        /* Card berita */
+        .card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #D3D3D3;
+            color: white;
+            text-align: center;
+            padding: 15px 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        Logo {
+        position: fixed;
+        
+    </style>
 </head>
 <body>
-<header>
-<span class="menu-btn" onclick="toggleMenu()">☰</span>
-<h1>TelyxoMedia</h1>
+
+    <header>
+    <div class="left-header">
+        <img src="TM-Web.png" alt="Logo" class="logo">
+        <div class="header-text">
+            <h1>TelyxoMedia</h1>
+            <h2>Berita Bitcoin & Crypto</h2>
+        </div>
+    </div>
+
+    <div class="menu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </header>
-<div id="sidebar">
-<h3>Menu</h3>
-<a href="#harga">Harga Crypto</a>
-<a href="#chart">Grafik BTC</a>
-<a href="#berita">Berita</a>
-</div>
-<div class="container">
-<div class="card" id="harga">
-<h2>Harga Crypto</h2>
-<div class="coin-list" id="coinList">Loading...</div>
-</div>
-<div class="card" id="chart">
-<h2>Grafik Harga Bitcoin (1 Menit)</h2>
-<canvas id="btcChart" height="180"></canvas>
-</div>
-<div class="card">
-<h2>Grafik Harga Bitcoin (30 Hari)</h2>
-<canvas id="btc30dChart" height="180"></canvas>
-</div>
-<div class="card" id="berita">
-<h2>Berita Crypto</h2>
-<div id="newsList">Sedang memuat...</div>
-</div>
-</div>
-<script>
-function toggleMenu(){document.getElementById('sidebar').classList.toggle('active');}
-let btc1mChart, btc30dChart;
-const iconMap={bitcoin:'btc',ethereum:'eth',bnb:'bnb',solana:'sol',ripple:'xrp',cardano:'ada',dogecoin:'doge'};
-let prevPrices={};
 
-async function fetchPrices(){
-try{
-const coins='bitcoin,ethereum,bnb,solana,ripple,cardano,dogecoin';
-const res=await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coins}&vs_currencies=idr&include_24hr_change=true`);
-const data=await res.json();
-function idr(v){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR'}).format(v)}
-let html='';
-for(const c in data){
- const name=c.toUpperCase();
- const change=data[c].idr_24h_change;
- const arrow=change>=0?'▲':'▼';
- const className=change>=0?'coin-value-up':'coin-value-down';
- let flashClass='';
- if(prevPrices[c] && data[c].idr !== prevPrices[c]){
-  flashClass = data[c].idr > prevPrices[c] ? 'flash-up' : 'flash-down';
-  setTimeout(()=>{document.getElementById(`row-${c}`)?.classList.remove(flashClass)},500);
- }
- html+=`<div class='price-row ${flashClass}' id='row-${c}'><div><img src='https://cryptoicon-api.vercel.app/api/icon/${iconMap[c]}' style='width:20px;vertical-align:middle;margin-right:6px'> ${name}</div><div class='${className}'>${idr(data[c].idr)} ${arrow} ${change.toFixed(2)}%</div></div>`;
- prevPrices[c]=data[c].idr;
-}
-document.getElementById('coinList').innerHTML=html;
-}catch(e){document.getElementById('coinList').innerText='Gagal memuat harga.'}}
+    <main>
+        <div class="card">
+            <h2>Berita 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae eros a quam malesuada porttitor.</p>
+        </div>
 
-async function fetchChart1m(){
-try{
-const res=await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=100');
-const data=await res.json();
-const candles=data.map(c=>({t:c[0],o:+c[1],h:+c[2],l:+c[3],c:+c[4]}));
-const ctx=document.getElementById('btcChart').getContext('2d');
-if(btc1mChart) btc1mChart.destroy();
-btc1mChart=new Chart(ctx,{type:'candlestick',data:{datasets:[{label:'BTC/USDT - 1 Menit',data:candles}]},options:{responsive:true,animation:{duration:300,easing:'linear'}}});
-// animasi flash candle terakhir
-setTimeout(()=>{
- const lastCandleIndex = candles.length-1;
- const meta = btc1mChart.getDatasetMeta(0);
- if(meta.data[lastCandleIndex]){
-   const color = candles[lastCandleIndex].c >= candles[lastCandleIndex].o ? 'rgba(0,255,0,0.3)' : 'rgba(255,0,0,0.3)';
-   meta.data[lastCandleIndex].custom={backgroundColor:color};
-   btc1mChart.update();
- }
-},100);
-}catch(e){console.log('Gagal memuat grafik 1 menit');}}
+        <div class="card">
+            <h2>Berita 2</h2>
+            <p>Nulla facilisi. Cras nec mi ac erat varius tincidunt non a metus. Proin vel tortor vel orci hendrerit.</p>
+        </div>
 
-async function fetchChart30d(){
-try{
-const res=await fetch('https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=30');
-const data=await res.json();
-const candles=data.map(c=>({t:c[0],o:+c[1],h:+c[2],l:+c[3],c:+c[4]}));
-const ctx=document.getElementById('btc30dChart').getContext('2d');
-if(btc30dChart) btc30dChart.destroy();
-btc30dChart=new Chart(ctx,{type:'candlestick',data:{datasets:[{label:'BTC/USDT - 30 Hari',data:candles}]},options:{responsive:true,animation:{duration:500,easing:'linear'}}});
-}catch(e){console.log('Gagal memuat grafik 30 hari');}}
+        <div class="card">
+            <h2>Berita 3</h2>
+            <p>Praesent at sapien ac sapien tristique tincidunt. Curabitur tincidunt justo a arcu volutpat, in pharetra nisl.</p>
+        </div>
+    </main>
 
-async function loadNews(){
-try{
-const res=await fetch('https://min-api.cryptocompare.com/data/v2/news/?lang=EN');
-const data=await res.json();
-let html='';
-data.Data.slice(0,5).forEach(n=>{html+=`<div style="margin-bottom:10px"><strong>${n.title}</strong><br><small>${new Date(n.published_on*1000).toLocaleString('id-ID')}</small></div>`;});
-document.getElementById('newsList').innerHTML=html;
-}catch(e){document.getElementById('newsList').innerHTML='Gagal memuat berita.'}}
+    <footer>
+        &copy; 2025 Web Berita. All rights reserved.
+    </footer>
 
-fetchPrices(); fetchChart1m(); fetchChart30d(); loadNews();
-setInterval(fetchPrices,10000); setInterval(fetchChart1m,10000); setInterval(fetchChart30d,60000);
-</script>
 </body>
 </html>

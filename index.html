@@ -307,21 +307,24 @@ if (carousel) {
   });
 }
 
-// URL halaman berita sesuai urutan card
-const newsPages = [
-  'berita1.html',
-  'berita2.html',
-  'berita3.html'
+// Link IG untuk setiap card (urut sesuai card muncul)
+const igLinks = [
+  "https://www.instagram.com/p/DRPL9Bmkq4Z/?igsh=MWh2MjJocjI0b3drOQ==",
+  
+  "https://www.instagram.com/p/DROromEEvFN/?igsh=MWZjeGdjNDVtN2NobA==",
+  
+  "https://www.instagram.com/p/DRO9JtNkgY9/?igsh=MWJmdW5waXpudWR6OQ=="
 ];
 
 // Ambil semua card
 const cards = document.querySelectorAll('.news-card');
 
+// Pasang event click ke masing-masing card
 cards.forEach((card, index) => {
-  card.style.cursor = 'pointer'; // ubah pointer agar terlihat klikable
+  card.style.cursor = 'pointer';  // biar kelihatan bisa diklik
+  
   card.addEventListener('click', () => {
-    // arahkan ke halaman berita sesuai urutan
-    window.location.href = newsPages[index];
+    window.open(igLinks[index], "_blank");  // buka link IG di tab baru
   });
 });
 

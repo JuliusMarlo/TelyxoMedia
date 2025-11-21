@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harga Crypto Real-Time</title>
+
+<style>
+    body {
+    background-image: url('body-web.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    margin: 0;   /* WAJIB supaya header/footer nempel */
+    padding: 0;  /* WAJIB supaya tidak ada jarak */
+}
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .crypto-list {
+        max-width: 450px;
+        margin: auto;
+        background: #ffffff;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .crypto-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        font-size: 15px;
+    }
+
+    .crypto-item:last-child {
+        border-bottom: none;
+    }
+
+    .left-side {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .coin-logo {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+    }
+
+    .green { color: #16c784; }
+    .red { color: #ea3943; }
+</style>
+
+</head>
+<body>
+
+<h1>📈 Harga Crypto</h1>
+
+<div class="crypto-list" id="cryptoList">
+    Memuat data...
+</div>
+
+<script>
+// === LIST 30 CRYPTO + LOGO URL ===
+const coins = [
+    { id: "bitcoin", name: "Bitcoin (BTC)", logo: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png" },
+    { id: "ethereum", name: "Ethereum (ETH)", logo: "https://assets.coingecko.com/coins/images/279/large/ethereum.png" },
+    { id: "solana", name: "Solana (SOL)", logo: "https://assets.coingecko.com/coins/images/4128/large/solana.png" },
+    { id: "binancecoin", name: "BNB", logo: "https://assets.coingecko.com/coins/images/825/large/binance-coin-logo.png" },
+    { id: "ripple", name: "XRP", logo: "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png" },
+    { id: "dogecoin", name: "Dogecoin (DOGE)", logo: "https://assets.coingecko.com/coins/images/5/large/dogecoin.png" },
+    { id: "cardano", name: "Cardano (ADA)", logo: "https://assets.coingecko.com/coins/images/975/large/cardano.png" },
+    { id: "avalanche-2", name: "Avalanche (AVAX)", logo: "https://assets.coingecko.com/coins/images/12559/large/coin-round-red.png" },
+    { id: "tron", name: "TRON (TRX)", logo: "https://assets.coingecko.com/coins/images/1094/large/tron-logo.png" },
+    { id: "polkadot", name: "Polkadot (DOT)", logo: "https://assets.coingecko.com/coins/images/12171/large/polkadot.png" },
+    { id: "chainlink", name: "Chainlink (LINK)", logo: "https://assets.coingecko.com/coins/images/877/large/chainlink-new-logo.png" },
+    { id: "polygon", name: "Polygon (MATIC)", logo: "https://assets.coingecko.com/coins/images/4713/large/matic-token-icon.png" },
+    { id: "litecoin", name: "Litecoin (LTC)", logo: "https://assets.coingecko.com/coins/images/2/large/litecoin.png" },
+    { id: "shiba-inu", name: "Shiba Inu (SHIB)", logo: "https://assets.coingecko.com/coins/images/11939/large/shiba.png" },
+    { id: "internet-computer", name: "ICP", logo: "https://assets.coingecko.com/coins/images/14495/large/Internet_Computer_logo.png" },
+    { id: "uniswap", name: "Uniswap (UNI)", logo: "https://assets.coingecko.com/coins/images/12504/large/uniswap-uni.png" },
+    { id: "stellar", name: "Stellar (XLM)", logo: "https://assets.coingecko.com/coins/images/100/large/Stellar_symbol_black_RGB.png" },
+    { id: "cosmos", name: "Cosmos (ATOM)", logo: "https://assets.coingecko.com/coins/images/1481/large/cosmos_hub.png" },
+    { id: "render-token", name: "Render (RNDR)", logo: "https://assets.coingecko.com/coins/images/11636/large/rndr.png" },
+    { id: "near", name: "NEAR Protocol", logo: "https://assets.coingecko.com/coins/images/10365/large/near.png" },
+    { id: "aptos", name: "Aptos (APT)", logo: "https://assets.coingecko.com/coins/images/26455/large/aptos_round.png" },
+    { id: "arbitrum", name: "Arbitrum (ARB)", logo: "https://assets.coingecko.com/coins/images/16547/large/arb.png" },
+    { id: "vechain", name: "Vechain (VET)", logo: "https://assets.coingecko.com/coins/images/1167/large/VeChain-Logo.png" },
+    { id: "the-open-network", name: "TON", logo: "https://assets.coingecko.com/coins/images/17980/large/ton_symbol.png" },
+    { id: "hedera-hashgraph", name: "Hedera (HBAR)", logo: "https://assets.coingecko.com/coins/images/3688/large/hbar.png" },
+    { id: "aave", name: "AAVE", logo: "https://assets.coingecko.com/coins/images/12645/large/AAVE.png" },
+    { id: "optimism", name: "Optimism (OP)", logo: "https://assets.coingecko.com/coins/images/25244/large/Optimism.png" },
+    { id: "maker", name: "Maker (MKR)", logo: "https://assets.coingecko.com/coins/images/1364/large/maker.png" },
+    { id: "quant-network", name: "Quant (QNT)", logo: "https://assets.coingecko.com/coins/images/11237/large/quant.png" },
+    { id: "mina-protocol", name: "Mina (MINA)", logo: "https://assets.coingecko.com/coins/images/15628/large/MINA.png" }
+];
+
+// === FETCH DATA REAL-TIME ===
+async function loadPrices() {
+    const container = document.getElementById("cryptoList");
+    container.innerHTML = "Memuat data...";
+
+    try {
+        const ids = coins.map(c => c.id).join(",");
+        const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        let html = "";
+        coins.forEach(c => {
+            const price = data[c.id]?.usd || 0;
+            const change = data[c.id]?.usd_24h_change || 0;
+
+            const changeClass = change >= 0 ? "green" : "red";
+
+            html += `
+                <div class="crypto-item">
+                    <div class="left-side">
+                        <img src="${c.logo}" class="coin-logo" alt="${c.name}">
+                        <span>${c.name}</span>
+                    </div>
+                    <span class="${changeClass}">
+                        $${price.toLocaleString()} (${change.toFixed(2)}%)
+                    </span>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+
+    } catch (error) {
+        container.innerHTML = "<div style='color:red;'>Gagal memuat data...</div>";
+    }
+}
+
+// Load pertama
+loadPrices();
+
+// Update setiap 15 detik
+setInterval(loadPrices, 15000);
+</script>
+
+</body>
+</html>

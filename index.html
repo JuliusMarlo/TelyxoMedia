@@ -1,355 +1,448 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>TelyxoMedia</title>
     <style>
-        body {
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+body {
+    background-image: url('body-web.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    margin: 0;   /* WAJIB supaya header/footer nempel */
+    padding: 0;  /* WAJIB supaya tidak ada jarak */
+}
 
         /* Header */
         header {
-    background-color: #626F78;
-    color: white;
-    padding: 15px 20px;
+            background-color: #626F78;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .left-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.left-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .logo {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
 
-.logo {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    border-radius: 5px; 
-}
+        .header-text {
+            display: flex;
+            flex-direction: column;
+        }
 
-.header-text {
-    display: flex;
-    flex-direction: column;
-}
+        .header-text h1,
+        .header-text h2 {
+            margin: 0;
+        }
 
-.header-text h1,
-.header-text h2 {
-    margin: 0;
-}
+        .header-text h1 {
+            font-size: 15px;
+            font-weight: bold;
+        }
 
-.header-text h1 {
-    font-size: 15px;
-    font-weight: bold;
-}
+        .header-text h2 {
+            font-size: 10px;
+            font-weight: 400;
+        }
+        /* Container logo IG */
+        .header-right {
+            display: inline-block;       /* biar bisa diatur posisi */
+            position: absolute;          /* posisinya bebas di header */
+            right: 118px;                 /* jarak dari kanan header */
+            bottom: 50px;
+            top: 8%;                    /* vertikal rata tengah */
+            transform: translateY(-8%); /* agar tepat di tengah vertikal */
+        }
 
-.header-text h2 {
-    font-size: 10px;
-    font-weight: 400;
-}
-/* Container logo IG */
-.header-right {
-  display: inline-block;       /* biar bisa diatur posisi */
-  position: absolute;          /* posisinya bebas di header */
-  right: 118px;                 /* jarak dari kanan header */
-  bottom: 50px;
-  top: 8%;                    /* vertikal rata tengah */
-  transform: translateY(-8%); /* agar tepat di tengah vertikal */
-}
+        /* Logo IG */
+        .header-right .logo-ig {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
 
-/* Logo IG */
-.header-right .logo-ig {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.header-right .logo-ig:hover {
-  opacity: 0.8;
-}
+        .header-right .logo-ig:hover {
+            opacity: 0.8;
+        }
 
         /* Footer */
         footer1 {
-        background-color: #3D3D3D;
-        text-align: center;
-        color: white;
-        padding: 10px;
-        position: fixed;
-        width: 100%;
-        }
-        
-        footer2 {
-            background-color: #626F78;
-            color: white;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        
-        #crypto-prices {
-    background: #4f5b66;
-    padding: 10px;
+    background-color: #3D3D3D;
+    text-align: center;
     color: white;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    width: 90%;
-    margin-top: 7px;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 88px;
+    z-index: 1000;   /* di bawah Footer3 */
 }
 
-.crypto-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
+footer2 {
+    background-color: #626F78;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;  /* di bawah Footer3 */
 }
 
-.crypto-item:last-child {
-    border-bottom: none;
-}
+        #crypto-prices {
+            background: #4f5b66;
+            padding: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            width: 90%;
+            margin-top: 7px;
+        }
 
-.green {
-    color: #4cff4c;
-}
+        .crypto-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
 
-.red {
-    color: #ff6b6b;
-}
+        .crypto-item:last-child {
+            border-bottom: none;
+        }
 
-/* Container horizontal scroll */
-.news-carousel {
-  display: flex;
-  overflow-x: auto;
-  gap: 16px;
-  margin-top: 250px;
-  padding: 16px;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-}
+        .green {
+            color: #4cff4c;
+        }
 
-.news-carousel::-webkit-scrollbar {
-  display: none;
-}
+        .red {
+            color: #ff6b6b;
+        }
 
-/* Card berita */
-.news-card {
-  flex: 0 0 200px; /* card lebar tetap */
-  background-color: #D3D3D3;
-  border-radius: 12px;
-  overflow: hidden;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        /* Container horizontal scroll */
+        .news-carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 16px;
+            margin-top: 270px;
+            padding: 16px;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+
+        .news-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Card berita */
+        .news-card {
+            flex: 0 0 200px; /* card lebar tetap */
+            background-color: #D3D3D3;
+            border-radius: 12px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px); /* efek hover */
+        }
+
+        /* Gambar besar di atas */
+        .news-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        /* Konten teks */
+        .news-card p {
+            font-size: 14px;
+            margin: 8px;
+            text-align: center;
+            font-weight: 500;
+        }
+        /* Tombol hamburger di kanan atas */
+.hamburger-btn {
+  position: fixed;
+  top: 20px;   /* jarak dari atas */
+  right: -90px; /* jarak dari kanan */
+  font-size: 30px;
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: transform 0.2s;
+  z-index: 1000; /* supaya selalu di atas popup */
 }
 
-.news-card:hover {
-  transform: translateY(-5px); /* efek hover */
-}
-
-/* Gambar besar di atas */
-.news-card img {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-}
-
-/* Konten teks */
-.news-card p {
-  font-size: 14px;
-  margin: 8px;
+/* Pop-up */
+.popup {
+  position: fixed;
+  left: -100%;
+  transform: translateX(0);
+  background: white;
+  padding: 20px;
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.25s ease;
+  width: 150px;
   text-align: center;
-  font-weight: 500;
+  z-index: 9999;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+
+/* Pop-up muncul dari kiri */
+.popup.show {
+  left: 0;                 /* >>> ditambahkan */
+  opacity: 1;
+  pointer-events: auto;
 }
         
+        /* ============================
+   FIX TAMPILAN DESKTOP
+   ============================ */
+@media (min-width: 768px) {
+
+    /* Perbaiki footer1 agar tidak naik ke tengah */
+    footer1 {
+        top: 70px;         /* sebelumnya 100px terlalu tinggi */
+        padding: 15px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    /* Perbaiki footer2 agar tidak terlalu besar di desktop */
+    footer2 {
+        padding: 18px;
+        font-size: 15px;
+    }
+
+    /* Geser news-carousel ke posisi normal untuk desktop */
+    .news-carousel {
+        margin-top: 160px;  /* sebelumnya 250px terlalu jauh */
+    }
+
+    /* Header-right  muncul rapi di kanan desktop */
+    .header-right {
+        right: 30px;       /* posisi kanan lebih masuk */
+        top: 20px;         /* posisi vertikal lebih stabil */
+        transform: none;   /* matikan transform HP */
+    }
+
+    /* Supaya card berita lebih lebar dan rapi saat desktop */
+    .news-card {
+        flex: 0 0 260px; /* lebar card lebih cocok untuk layar besar */
+    }
+
+    .news-card img {
+        height: 150px; /* gambar lebih proporsional */
+    }
+}
+
     </style>
 </head>
 <body>
 
-    <header>
+<header>
     <div class="left-header">
         <img src="Web-bg.png" alt="Logo" class="logo">
         <div class="header-text">
             <h1>TelyxoMedia</h1>
             <h2>Berita Bitcoin & Crypto</h2>
-           <div class="header-right">
-           <a href="https://www.instagram.com/telyxomedia?igsh=MThldWpsMGJocXhiMQ==" target="_blank">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="logo-ig">
-</a>
-           </div>
+            <div class="header-right">
+            <a href="https://www.instagram.com/telyxomedia?igsh=MThldWpsMGJocXhiMQ==" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="logo-ig">
+                </a>
+            
+               <button class="hamburger-btn" id="menuBtn">☰</button>
+            </div>
         </div>
     </div>
-    </header>
-    
-    <footer1>
-    Harga Bitcoin & Crypto
+</header>
+
+<footer1>
+    Harga Crypto
     <div id="crypto-prices"></div>
-    </footer1>
-    
+</footer1>
+
 <div class="news-carousel">
-  <div class="news-card">
-    <img src="berita1.jpg" alt="Berita 1">
-    <p>🚨 NOW: Para senator AS menyerukan penyelidikan federal kepada proyek kripto World Liberty Financial yang terkait dengan keluarga Trump.</p>
-  </div>
-  <div class="news-card">
-    <img src="berita2.jpg" alt="Berita 2">
-    <p>Bitcoin Jatuh di Bawah $90K.</p>
-  </div>
-  <div class="news-card">
-    <img src="berita3.jpg" alt="Berita 3">
-    <p>🚨 BARU: Malaysia mencatat kerugian listrik lebih dari $1,1 miliar karena 13,827 situs penambangan kripto ilegal tertangkap yang melewati meteran listrik sejak tahun 2020.</p>
-  </div>
+    <div class="news-card">
+        <img src="berita1.jpg" alt="Berita 1">
+        <p>🚨 NOW: Para senator AS menyerukan penyelidikan federal kepada proyek kripto World Liberty Financial yang terkait dengan keluarga Trump.</p>
+    </div>
+    <div class="news-card">
+        <img src="berita2.jpg" alt="Berita 2">
+        <p>Bitcoin Jatuh di Bawah $90K.</p>
+    </div>
+    <div class="news-card">
+        <img src="berita3.jpg" alt="Berita 3">
+        <p>🚨 BARU: Malaysia mencatat kerugian listrik lebih dari $1,1 miliar karena 13,827 situs penambangan kripto ilegal tertangkap yang melewati meteran listrik sejak tahun 2020.</p>
+    </div>
 </div>
 
-    <footer2>
-       &copy; 2025 Web Berita. All rights reserved.
-    </footer2>
-    
-    <script>
+<div class="popup" id="popup">
+  <h3>Menu</h3>
+  <button onclick="location.href='hargacrypto.html'">Harga Crypto</button>
+         </div>
+         
+<footer2>
+    &copy; 2025 Web Berita.
+</footer2>
+
+<script>
+// =============================
+//  LOGO CRYPTO
+// =============================
+const coinLogos = {
+    bitcoin: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
+    ethereum: "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+    solana: "https://assets.coingecko.com/coins/images/4128/large/solana.png",
+    binancecoin: "https://assets.coingecko.com/coins/images/825/large/binance-coin-logo.png",
+    ripple: "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png",
+    dogecoin: "https://assets.coingecko.com/coins/images/5/large/dogecoin.png"
+};
+
+
+// =============================
+//  LOAD HARGA CRYPTO
+// =============================
 async function loadPrices() {
     const container = document.getElementById("crypto-prices");
     if (!container) return;
 
     try {
-        // daftar coin (bisa ditambah sesuka kamu)
-        const coins = [
-            { id: "bitcoin", name: "Bitcoin (BTC)" },
-            { id: "ethereum", name: "Ethereum (ETH)" },
-            { id: "solana", name: "Solana (SOL)" },
-            { id: "binancecoin", name: "BNB" },
-            { id: "ripple", name: "XRP" },
-            { id: "dogecoin", name: "Dogecoin (DOGE)" },
-        ];
-
-        const ids = coins.map(c => c.id).join(",");
-
-        const url =
-            `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
-
-        const res = await fetch(url, { cache: "no-store" });
+        const res = await fetch(
+            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,binancecoin,ripple,dogecoin&vs_currencies=usd&include_24hr_change=true"
+        );
         const data = await res.json();
 
+        const coins = {
+            bitcoin: "Bitcoin (BTC)",
+            ethereum: "Ethereum (ETH)",
+            solana: "Solana (SOL)",
+            binancecoin: "BNB",
+            ripple: "XRP",
+            dogecoin: "Dogecoin (DOGE)"
+        };
+
         let html = "";
-        coins.forEach(c => {
-            const price = data[c.id].usd;
-            const change = data[c.id].usd_24h_change.toFixed(2);
+        for (let id in coins) {
+            const price = data[id]?.usd ?? 0;
+            const change = data[id]?.usd_24h_change ?? 0;
+            const color = change >= 0 ? "green" : "red";
 
             html += `
                 <div class="crypto-item">
-                    <span>${c.name}</span>
-                    <span class="${change >= 0 ? 'green' : 'red'}">
-                        $${price.toLocaleString()} (${change}%)
+                    <span style="display:flex;align-items:center;gap:6px;">
+                        <img src="${coinLogos[id]}" style="width:18px;height:18px;border-radius:50%;">
+                        ${coins[id]}
+                    </span>
+                    <span style="color:${color};">
+                        $${price.toLocaleString()} (${change.toFixed(2)}%)
                     </span>
                 </div>
             `;
-        });
+        }
 
         container.innerHTML = html;
 
-    } catch (err) {
-        container.innerHTML = "<div style='color:#ff6b6b;'>Gagal memuat harga...</div>";
+    } catch (e) {
+        container.innerHTML = "<div style='color:red;'>Gagal memuat harga...</div>";
     }
 }
 
-// load pertama kali
+// Load awal + update tiap 15 detik
 loadPrices();
-
-// update 15 detik sekali
 setInterval(loadPrices, 15000);
 
+// =======================
+//  DRAG / SWIPE CAROUSEL
+// =======================
 const carousel = document.querySelector('.news-carousel');
 
 if (carousel) {
-  let isDown = false;
-  let startX;
-  let scrollLeft;
+    let isDown = false;
+    let startX, scrollLeft;
 
-  carousel.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - carousel.offsetLeft;
-    scrollLeft = carousel.scrollLeft;
-  });
+    carousel.addEventListener('mousedown', e => {
+        isDown = true;
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+    });
 
-  carousel.addEventListener('mouseleave', () => isDown = false);
-  carousel.addEventListener('mouseup', () => isDown = false);
+    carousel.addEventListener('mouseup', () => isDown = false);
+    carousel.addEventListener('mouseleave', () => isDown = false);
 
-  carousel.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - startX;
-    const walk = x * 2;
-    carousel.scrollLeft = scrollLeft - walk;
-  });
+    carousel.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        e.preventDefault();
+        const walk = (e.pageX - startX) * 2;
+        carousel.scrollLeft = scrollLeft - walk;
+    });
 
-  // swipe mobile
-  let touchStartX = 0;
-  let touchScrollLeft = 0;
+    // mobile
+    carousel.addEventListener('touchstart', e => {
+        startX = e.touches[0].pageX;
+        scrollLeft = carousel.scrollLeft;
+    });
 
-  carousel.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].pageX;
-    touchScrollLeft = carousel.scrollLeft;
-  });
-
-  carousel.addEventListener('touchmove', (e) => {
-    const x = e.touches[0].pageX;
-    const walk = touchStartX - x;
-    carousel.scrollLeft = touchScrollLeft + walk;
-  });
+    carousel.addEventListener('touchmove', e => {
+        const walk = startX - e.touches[0].pageX;
+        carousel.scrollLeft = scrollLeft + walk;
+    });
 }
 
-// Link IG untuk setiap card (urut sesuai card muncul)
+
+
+// =======================
+//  CARD OPEN INSTAGRAM
+// =======================
 const igLinks = [
-  "https://www.instagram.com/p/DRPL9Bmkq4Z/?igsh=MWh2MjJocjI0b3drOQ==",
-  
-  "https://www.instagram.com/p/DROromEEvFN/?igsh=MWZjeGdjNDVtN2NobA==",
-  
-  "https://www.instagram.com/p/DRO9JtNkgY9/?igsh=MWJmdW5waXpudWR6OQ=="
+    "https://www.instagram.com/p/DRPL9Bmkq4Z/?igsh=MWh2MjJocjI0b3drOQ==",
+    "https://www.instagram.com/p/DROromEEvFN/?igsh=MWZjeGdjNDVtN2NobA==",
+    "https://www.instagram.com/p/DRO9JtNkgY9/?igsh=MWJmdW5waXpudWR6OQ=="
 ];
 
-// Ambil semua card
-const cards = document.querySelectorAll('.news-card');
-
-// Pasang event click ke masing-masing card
-cards.forEach((card, index) => {
-  card.style.cursor = 'pointer';  // biar kelihatan bisa diklik
-  
-  card.addEventListener('click', () => {
-    window.open(igLinks[index], "_blank");  // buka link IG di tab baru
-  });
+document.querySelectorAll('.news-card').forEach((card, index) => {
+    card.addEventListener('click', () => {
+        window.open(igLinks[index], "_blank");
+    });
 });
 
-const header = document.querySelector('.header');
 
-// pastikan header menjadi acuan posisi
-header.style.position = 'relative';  // AMPuh, tapi tidak mengubah layout
 
-const rightDiv = document.createElement('div');
-rightDiv.className = 'header-right';
+// =======================
+//  HAMBURGER MENU
+// =======================
+const btn = document.getElementById("menuBtn");
+const popup = document.getElementById("popup");
+let isOpen = false;
 
-const igLink = document.createElement('a');
-igLink.href = 'https://www.instagram.com/username';
-igLink.target = '_blank';
-
-const igLogo = document.createElement('img');
-igLogo.src = 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg';
-igLogo.alt = 'Instagram';
-igLogo.className = 'logo-ig';
-
-igLink.appendChild(igLogo);
-rightDiv.appendChild(igLink);
-
-header.appendChild(rightDiv);
-
+btn.addEventListener("click", () => {
+    isOpen = !isOpen;
+    popup.classList.toggle("show", isOpen);
+    btn.textContent = isOpen ? "✖" : "☰";
+});
 </script>
 
 </body>

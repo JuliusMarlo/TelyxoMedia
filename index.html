@@ -78,11 +78,12 @@ body {
         /* Footer */
         footer1 {
     background-color: #3D3D3D;
-    text-align: center;
     color: white;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
+    width: 88,9%;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 88px;
     z-index: 1000;   /* di bawah Footer3 */
 }
@@ -90,11 +91,12 @@ body {
 footer2 {
     background-color: #626F78;
     color: white;
-    padding: 20px;
-    position: fixed;
-    text-align: center;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     bottom: 0;
-    width: 100%;
+    width: 88,9#%;
     z-index: 1000;  /* di bawah Footer3 */
 }
 
@@ -125,56 +127,8 @@ footer2 {
 
         .red {
             color: #ff6b6b;
-        }
-
-        /* Container horizontal scroll */
-        .news-carousel {
-            display: flex;
-            overflow-x: auto;
-            gap: 16px;
-            margin-top: 270px;
-            padding: 16px;
-            scrollbar-width: none;
-            scroll-snap-type: x mandatory;
-        }
-
-        .news-carousel::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Card berita */
-        .news-card {
-            flex: 0 0 200px; /* card lebar tetap */
-            background-color: #D3D3D3;
-            border-radius: 12px;
-            overflow: hidden;
-            scroll-snap-align: start;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px); /* efek hover */
-        }
-
-        /* Gambar besar di atas */
-        .news-card img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        /* Konten teks */
-        .news-card p {
-            font-size: 14px;
-            margin: 8px;
-            text-align: center;
-            font-weight: 500;
-        }
-        /* Tombol hamburger di kanan atas */
+        }    
+        
 .hamburger-btn {
   position: fixed;
   top: 20px;   /* jarak dari atas */
@@ -205,6 +159,9 @@ footer2 {
   top: 0;
   bottom: 0;
   overflow-y: auto;
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
 }
 
 /* Pop-up muncul dari kiri */
@@ -212,6 +169,54 @@ footer2 {
   left: 0;                 /* >>> ditambahkan */
   opacity: 1;
   pointer-events: auto;
+}
+ 
+/* Vertical news feed */
+#news {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Card */
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 14px;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card .title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.card .meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.card .excerpt {
+  color: #1f2937;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.card a.read {
+  display: inline-block;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 13px;
 }
         
         /* ============================
@@ -233,27 +238,12 @@ footer2 {
         font-size: 15px;
     }
 
-    /* Geser news-carousel ke posisi normal untuk desktop */
-    .news-carousel {
-        margin-top: 160px;  /* sebelumnya 250px terlalu jauh */
-    }
-
     /* Header-right  muncul rapi di kanan desktop */
     .header-right {
         right: 30px;       /* posisi kanan lebih masuk */
         top: 20px;         /* posisi vertikal lebih stabil */
         transform: none;   /* matikan transform HP */
     }
-
-    /* Supaya card berita lebih lebar dan rapi saat desktop */
-    .news-card {
-        flex: 0 0 260px; /* lebar card lebih cocok untuk layar besar */
-    }
-
-    .news-card img {
-        height: 150px; /* gambar lebih proporsional */
-    }
-}
 
     </style>
 </head>
@@ -281,28 +271,19 @@ footer2 {
     <div id="crypto-prices"></div>
 </footer1>
 
-<div class="news-carousel">
-    <div class="news-card">
-        <img src="berita1.jpg" alt="Berita 1">
-        <p>🚨 NOW: Para senator AS menyerukan penyelidikan federal kepada proyek kripto World Liberty Financial yang terkait dengan keluarga Trump.</p>
-    </div>
-    <div class="news-card">
-        <img src="berita2.jpg" alt="Berita 2">
-        <p>Bitcoin Jatuh di Bawah $90K.</p>
-    </div>
-    <div class="news-card">
-        <img src="berita3.jpg" alt="Berita 3">
-        <p>🚨 BARU: Malaysia mencatat kerugian listrik lebih dari $1,1 miliar karena 13,827 situs penambangan kripto ilegal tertangkap yang melewati meteran listrik sejak tahun 2020.</p>
-    </div>
+<div id="news">
+  <div class="muted">Memuat berita...</div>
 </div>
 
 <div class="popup" id="popup">
   <h3>Menu</h3>
   <button onclick="location.href='hargacrypto.html'">Harga Crypto</button>
+  <button onclick="location.href='beritah.html'">Berita</button>
+  <button onclick="location.href='chat.html'">Chat</button>
          </div>
          
 <footer2>
-    &copy; 2025 Web Berita.
+    &copy; 2026 WYC Group.
 </footer2>
 
 <script>
@@ -372,62 +353,6 @@ loadPrices();
 setInterval(loadPrices, 15000);
 
 // =======================
-//  DRAG / SWIPE CAROUSEL
-// =======================
-const carousel = document.querySelector('.news-carousel');
-
-if (carousel) {
-    let isDown = false;
-    let startX, scrollLeft;
-
-    carousel.addEventListener('mousedown', e => {
-        isDown = true;
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeft = carousel.scrollLeft;
-    });
-
-    carousel.addEventListener('mouseup', () => isDown = false);
-    carousel.addEventListener('mouseleave', () => isDown = false);
-
-    carousel.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const walk = (e.pageX - startX) * 2;
-        carousel.scrollLeft = scrollLeft - walk;
-    });
-
-    // mobile
-    carousel.addEventListener('touchstart', e => {
-        startX = e.touches[0].pageX;
-        scrollLeft = carousel.scrollLeft;
-    });
-
-    carousel.addEventListener('touchmove', e => {
-        const walk = startX - e.touches[0].pageX;
-        carousel.scrollLeft = scrollLeft + walk;
-    });
-}
-
-
-
-// =======================
-//  CARD OPEN INSTAGRAM
-// =======================
-const igLinks = [
-    "https://www.instagram.com/p/DRPL9Bmkq4Z/?igsh=MWh2MjJocjI0b3drOQ==",
-    "https://www.instagram.com/p/DROromEEvFN/?igsh=MWZjeGdjNDVtN2NobA==",
-    "https://www.instagram.com/p/DRO9JtNkgY9/?igsh=MWJmdW5waXpudWR6OQ=="
-];
-
-document.querySelectorAll('.news-card').forEach((card, index) => {
-    card.addEventListener('click', () => {
-        window.open(igLinks[index], "_blank");
-    });
-});
-
-
-
-// =======================
 //  HAMBURGER MENU
 // =======================
 const btn = document.getElementById("menuBtn");
@@ -439,6 +364,65 @@ btn.addEventListener("click", () => {
     popup.classList.toggle("show", isOpen);
     btn.textContent = isOpen ? "✖" : "☰";
 });
+
+const NEWS_CONTAINER_ID = 'news';
+const RSS_URL = 'https://cointelegraph.com/rss';
+const API = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(RSS_URL);
+const REFRESH_INTERVAL_MS = 30000; // 30 detik
+
+async function loadNews() {
+  const container = document.getElementById(NEWS_CONTAINER_ID);
+  container.innerHTML = '<div class="muted">Memuat berita...</div>';
+
+  try {
+    const res = await fetch(API);
+    if (!res.ok) throw new Error('Fetch failed: ' + res.status);
+    const data = await res.json();
+
+    if (!data || !Array.isArray(data.items)) {
+      container.innerHTML = '<div class="muted">Tidak ada berita.</div>';
+      return;
+    }
+
+    container.innerHTML = data.items.map(item => {
+      const title = escapeHtml(item.title || '');
+      const link = item.link || '#';
+      const pubDate = item.pubDate ? new Date(item.pubDate).toLocaleString() : '';
+      const excerpt = item.description ? stripHtml(item.description).slice(0, 260) + '…' : '';
+
+      return `
+        <article class="card">
+          <div class="title">${title}</div>
+          <div class="meta">
+            <div class="muted">${pubDate}</div>
+            <div class="muted">${escapeHtml(item.author || '')}</div>
+          </div>
+          <div class="excerpt">${escapeHtml(excerpt)}</div>
+          <a class="read" href="${link}" target="_blank">Baca selengkapnya →</a>
+        </article>
+      `;
+    }).join('');
+
+  } catch (err) {
+    console.error('Error:', err);
+    container.innerHTML = '<div class="muted">❌ Gagal memuat berita.</div>';
+  }
+}
+
+function escapeHtml(str) {
+  return str.replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+}
+
+function stripHtml(html) {
+  return html.replace(/<[^>]*>?/gm, "");
+}
+
+loadNews();
+setInterval(loadNews, REFRESH_INTERVAL_MS);
 </script>
 
 </body>

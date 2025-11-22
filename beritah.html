@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Berita</title>
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white; /* warna semula / warna netral */
+    font-family: Arial, sans-serif;
+}
+
+  header {
+    background-color: #626F78;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .news {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  }
+
+  .card a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #007bff;
+  }
+</style>
+</head>
+<body>
+
+<header>📰 Berita Crypto</header>
+
+<div id="news" class="news">Memuat berita...</div>
+
+<script>
+function loadNews() {
+  const rss = "https://cointelegraph.com/rss";
+  const api = "https://api.rss2json.com/v1/api.json?rss_url=" + rss;
+
+  fetch(api)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("news").innerHTML = data.items.map(n => `
+        <div class="card">
+          <a href="${n.link}" target="_blank">${n.title}</a>
+          <div>${n.pubDate}</div>
+        </div>
+      `).join("");
+    })
+    .catch(err => {
+      console.log("Error:", err);
+      document.getElementById("news").innerHTML = "❌ Gagal memuat berita";
+    });
+}
+
+// pertama load
+loadNews();
+
+// auto-refresh tiap 30 detik
+setInterval(loadNews, 30000);
+</script>
+
+</body>
+</html>

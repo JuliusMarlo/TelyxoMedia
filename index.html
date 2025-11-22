@@ -54,24 +54,30 @@ body {
             font-size: 10px;
             font-weight: 400;
         }
-        /* Container logo IG */
+        
         .header-right {
-            display: inline-block;       /* biar bisa diatur posisi */
-            position: absolute;          /* posisinya bebas di header */
-            right: 118px;                 /* jarak dari kanan header */
-            bottom: 50px;
-            top: 8%;                    /* vertikal rata tengah */
-            transform: translateY(-8%); /* agar tepat di tengah vertikal */
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-
-        /* Logo IG */
-        .header-right .logo-ig {
-            width: 20px;
-            height: 20px;
+        .logo-ig {
+            display: inline-block;
+            position: absolute;          
+            left: 200px;  
+            top: 1%;
+            width: 25px;
+            cursor: pointer;
+        }
+        .logo-tt {
+            display: inline-block;
+            position: absolute;          
+            left: 250px;  
+            top: 1%;
+            width: 25px;
             cursor: pointer;
         }
 
-        .header-right .logo-ig:hover {
+        .header-right .logo-ig .logo-tt :hover {
             opacity: 0.8;
         }
 
@@ -130,14 +136,15 @@ footer2 {
         }    
         
 .hamburger-btn {
-  position: fixed;
-  top: 20px;   /* jarak dari atas */
-  right: -90px; /* jarak dari kanan */
+  position: absolute;
+  display: inline-block;
+  top: 3%;
+  left: 300px;
   font-size: 30px;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1000; /* supaya selalu di atas popup */
+  z-index: 5000; /* supaya selalu di atas popup */
 }
 
 /* Pop-up */
@@ -259,6 +266,11 @@ footer2 {
             <a href="https://www.instagram.com/telyxomedia?igsh=MThldWpsMGJocXhiMQ==" target="_blank">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" class="logo-ig">
                 </a>
+                
+                <a href="https://www.tiktok.com/@telyxomedia.id?_r=1&_t=ZS-91cIfUjIiuL" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg" 
+alt="TikTok" class="logo-tt">
+</a>
             
                <button class="hamburger-btn" id="menuBtn">☰</button>
             </div>
@@ -277,10 +289,10 @@ footer2 {
 
 <div class="popup" id="popup">
   <h3>Menu</h3>
-  <button onclick="location.href='hargacrypto.html'">Harga Crypto</button>
-  <button onclick="location.href='beritah.html'">Berita</button>
-  <button onclick="location.href='modul.html'">Modul</button>
-  <button onclick="location.href='chat.html'">Chat</button>
+  <button onclick="location.href='hargacrypto.html'">📈 Harga Crypto</button>
+  <button onclick="location.href='beritah.html'">📰 Berita</button>
+  <button onclick="location.href='modul.html'">📒 Modul</button>
+  <button onclick="location.href='chat.html'">✉️ Pesan</button>
          </div>
          
 <footer2>

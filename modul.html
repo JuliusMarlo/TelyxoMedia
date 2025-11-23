@@ -20,6 +20,88 @@ body {
             justify-content: center;
             align-items: center;
         }
+
+/* === CARD VERTIKAL === */
+.card-container {
+    display: flex;
+    flex-direction: column; /* MENURUN */
+    gap: 15px;
+    align-items: center; /* biar rapi tengah */
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    width: 300px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* GAMBAR FIX */
+.card-img {
+    width: 100%;
+    height: 150px;      /* ukuran fix sedang */
+    object-fit: cover;  /* gambar tetap proporsional */
+    display: block;
+}
+
+.card-title {
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* === POPUP FOOTER === */
+.popup {
+    position: fixed;
+    left: 0;
+    bottom: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    transition: 0.4s ease;
+}
+
+.popup.show {
+    bottom: 0;
+}
+
+/* KOTAK FOOTER */
+.popup-box {
+    background: #fff;
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    animation: slideUp 0.35s ease;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+/* TOMBOL CLOSE */
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+        
         </style>
         </head>
         
@@ -28,5 +110,190 @@ body {
         <h1>📒Modul</h1>
         </header>
         
+        <!-- CARD CONTAINER -->
+<div class="card-container">
+
+    <!-- CARD 1 -->
+    <div class="card" data-popup="popup1">
+        <img src="apaitubtc.jpeg" class="card-img">
+        <h3 class="card-title">Apa Itu Bitcoin?🤔</h3>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card" data-popup="popup2">
+        <img src="apaitucc.jpeg" class="card-img">
+        <h3 class="card-title">Apa Itu Cryptocurrency?🤔</h3>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card" data-popup="popup3">
+        <img src="apaitubc.jpeg" class="card-img">
+        <h3 class="card-title">Apa Itu Blockchain?🤔</h3>
+    </div>
+
+</div>
+
+<!-- POPUP 1 -->
+<div class="popup" id="popup1">
+    <div class="popup-box">
+        <button class="close-btn">✕</button>
+        <h2>Apa Itu Bitcoin?🤔</h2>
+
+<p>‎Bitcoin adalah uang digital yang bisa dikirim ke siapa saja lewat internet tanpa perantara seperti bank.
+‎Tidak ada kantor pusat, tidak ada bos, tidak bisa dimatikan atau dikontrol negara mana pun.</p>
+‎
+‎<p>Kenapa Bitcoin Penting?</p>
+‎
+‎<p>Jumlahnya terbatas: hanya ada 21 juta bitcoin membuatnya langka seperti emas.</p>
+‎
+‎<p>Aman & transparan: transaksi dicatat di jaringan publik yang tidak bisa diubah.</p>
+‎
+‎<p>Cepat & global: bisa dikirim kapan saja, ke mana saja, tanpa batas negara.</p>
+‎
+‎<p>Siapa yang Membuat Bitcoin?</p>
+‎
+‎<p>Dibuat oleh seseorang (atau tim) dengan nama samaran Satoshi Nakamoto pada tahun 2008. Satoshi merilis dokumen bernama whitepaper Bitcoin yang menjelaskan cara kerja uang digital tanpa bank. Tahun 2009, Bitcoin resmi berjalan dan menjadi pelopor cryptocurrency.</p>
+
+‎<p>Tujuan Bitcoin Dibuat:</p>
+‎
+<p>‎- Memberikan kendali penuh atas uang kepada pengguna.</p>
+‎
+<p>‎- Menghindari inflasi berlebihan dari uang fiat.</p>
+‎
+<p>‎- Menjadi sistem pembayaran digital yang aman, cepat, dan tanpa batas.</p>
+    </div>
+</div>
+
+<!-- POPUP 2 -->
+<div class="popup" id="popup2">
+    <div class="popup-box">
+        <button class="close-btn">✕</button>
+        <h2>Apa Itu Cryptocurrency?🤔</h2>
+        <p>Cryptocurrency (crypto) adalah aset digital yang bekerja dengan teknologi kriptografi dan blockchain.
+‎Crypto tidak hanya soal “uang digital”, tetapi juga:</p>
+‎
+<p>‎- Platform aplikasi,</p>
+‎
+<p>‎- Token utilitas,</p>
+‎
+‎<p>- Tiket masuk ekosistem,</p>
+‎
+<p>‎- Instrumen investasi,</p>
+‎
+<p>‎- Hingga koleksi digital.</p>
+‎
+‎<p>Jenis-Jenis Crypto:</p>
+‎
+<p>‎1. Coin – Punya blockchain sendiri.
+‎Contoh: BTC, ETH, SOL.</p>
+‎
+<p>‎2. Token – Dibangun di atas blockchain lain.
+‎Contoh: UNI (Ethereum), CAKE (BNB Chain).</p>
+‎
+‎<p>3. Stablecoin – Nilainya stabil mengikuti dolar.
+‎Contoh: USDT, USDC.</p>
+‎
+<p>‎4. NFT – Sertifikat digital unik.
+‎Contoh: koleksi seni, item game.</p>
+‎
+<p>‎5. Meme Coin – Untuk komunitas/hiburan.Contoh: DOGE, SHIB.</p>
+‎
+‎<p>Kenapa Banyak Jenis Crypto?
+‎Setiap crypto diciptakan dengan tujuan berbeda:</p>
+‎
+<p>‎- Sistem pembayaran (Bitcoin).</p>
+‎
+<p>‎- Platform aplikasi dan smart contract (Ethereum).</p>
+‎
+<p>‎- Infrastruktur blockchain (Polygon, Polkadot).</p>
+‎
+<p>‎- DeFi: pinjam-meminjam, staking, DEX (AAVE, UNI).</p>
+‎
+‎<p>- Gaming & metaverse (SAND, AXS).</p>
+‎
+‎<p>Supply Crypto:</p>
+‎
+<p>‎- Ada yang tetap (BTC).</p>
+‎
+<p>‎- Ada yang inflasi (DOT).</p>
+‎
+<p>‎- Ada yang burning (ETH).</p>
+‎
+<p>‎- Ada yang didukung aset nyata (stablecoin).</p>
+‎
+‎<p>Setiap proyek punya tokenomics yang memengaruhi nilai dan kelangkaannya.</p>
+    </div>
+</div>
+
+<!-- POPUP 3 -->
+<div class="popup" id="popup3">
+    <div class="popup-box">
+        <button class="close-btn">✕</button>
+        <h2>Apa Itu Blockchain?🤔</h2>
+        ‎
+        <p>Blockchain teknologi di Balik Crypto. Bayangkan sebuah buku besar digital yang disalin ke banyak komputer di seluruh dunia.
+‎Setiap transaksi tercatat dalam bentuk blok, dan blok-blok tersebut tersambung seperti rantai. Inilah yang disebut blockchain.</p>
+‎
+‎<p>Mengapa Blockchain Revolusioner?</p>
+‎
+‎<p>- Terbuka: siapa saja bisa melihat transaksi.</p>
+‎
+‎<p>- Aman: dilindungi kriptografi.</p>
+‎
+‎<p>- Tidak bisa dimanipulasi: setelah data masuk, sangat sulit diubah.</p>
+‎
+‎<p>- Tanpa pusat: tidak ada server utama yang bisa diserang atau dimatikan.</p>
+‎
+‎<p>Awal Mula Blockchain.</p>
+‎
+‎<p>Konsepnya sudah ada sejak 1990-an, tetapi baru berhasil diimplementasikan pertama kali lewat Bitcoin (2009).</p>
+‎
+‎<p>Di tahun 2015, Ethereum mengembangkan versi lanjutan blockchain yang bisa menjalankan smart contract — program otomatis yang menjadi dasar DeFi, NFT, dan aplikasi Web3.</p>
+‎
+‎<p>Apa hubungan Bitcoin, Crypto, dan Blockchain?</p>
+‎
+‎<p>Cara paling mudah memahami:</p>
+‎
+‎<p>BlockchainTeknologi penyimpanan datanya.
+‎CryptocurrencyAset yang berjalan di atas blockchain.
+‎BitcoinCryptocurrency pertama & terbesar.</p>
+‎
+‎<p>Jadi:</p>
+‎
+‎<p>Blockchain adalah “jalan raya” — Crypto adalah “kendaraan” — Bitcoin adalah “mobil pertama dan paling terkenal”.</p>
+‎
+‎<p>Kenapa Banyak Orang Mulai Belajar Crypto?</p>
+‎
+‎<p>- Aset digital berkembang pesat di seluruh dunia.</p>
+‎
+‎<p>- Potensi keuntungan tinggi, tapi tetap ada risiko.</p>
+‎
+‎<p>- Dipakai perusahaan besar dan institusi global.</p>
+‎
+‎<p>- Teknologi blockchain semakin banyak digunakan.</p>
+‎
+‎<p>- Membuka peluang baru di bidang investasi, teknologi, bisnis, dan kreativitas digital.</p>
+    </div>
+</div>
+
+<script>
+
+// Buka popup berdasarkan card yang diklik
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+        const popupId = card.getAttribute("data-popup");
+        document.getElementById(popupId).classList.add("show");
+    });
+});
+
+// Tutup popup saat klik tombol X
+document.querySelectorAll(".close-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        btn.closest(".popup").classList.remove("show");
+    });
+});
+
+</script>
+
         </body>
         </html>

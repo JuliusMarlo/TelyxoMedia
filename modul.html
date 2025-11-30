@@ -71,7 +71,6 @@ body {
     align-items: flex-end;
     transition: 0.4s ease;
 }
-
 .popup.show {
     bottom: 0;
 }
@@ -86,7 +85,12 @@ body {
     animation: slideUp 0.35s ease;
     text-align: center;
     overflow-y: auto;
-    max-height: 60vh;
+    max-height: 80vh;
+    font-size: 12px;
+} 
+.popup-box p {
+    margin: 0 0 2px 0;
+    line-height: 1.8;
 }
 
 /* TOMBOL CLOSE */
@@ -117,19 +121,31 @@ body {
     <!-- CARD 1 -->
     <div class="card" data-popup="popup1">
         <img src="apaitubtc.jpeg" class="card-img">
-        <h3 class="card-title">Apa Itu Bitcoin?🤔</h3>
+        <h3 class="card-title">Apa Itu Bitcoin?</h3>
     </div>
 
     <!-- CARD 2 -->
     <div class="card" data-popup="popup2">
         <img src="apaitucc.jpeg" class="card-img">
-        <h3 class="card-title">Apa Itu Cryptocurrency?🤔</h3>
+        <h3 class="card-title">Apa Itu Cryptocurrency?</h3>
     </div>
 
     <!-- CARD 3 -->
     <div class="card" data-popup="popup3">
         <img src="apaitubc.jpeg" class="card-img">
-        <h3 class="card-title">Apa Itu Blockchain?🤔</h3>
+        <h3 class="card-title">Apa Itu Blockchain?</h3>
+    </div>
+    
+    <!-- CARD 4 -->
+    <div class="card" data-popup="popup4">
+        <img src="sistemkerjabtc.jpeg" class="card-img">
+        <h3 class="card-title">Gimana Sih Sistem Kerja Bitcoin?</h3>
+    </div>
+    
+    <!-- CARD 5 -->
+    <div class="card" data-popup="popup5">
+        <img src="sistemkerjabc.jpeg" class="card-img">
+        <h3 class="card-title">Gimana Sih Sistem Kerja Blockchain?</h3>
     </div>
 
 </div>
@@ -162,6 +178,11 @@ body {
 <p>‎- Menghindari inflasi berlebihan dari uang fiat.</p>
 ‎
 <p>‎- Menjadi sistem pembayaran digital yang aman, cepat, dan tanpa batas.</p>
+
+<p> <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" class="whitepaper">
+Whitepaper Bitcoin
+</a> </p>
+
     </div>
 </div>
 
@@ -275,6 +296,50 @@ body {
 ‎
 ‎<p>- Membuka peluang baru di bidang investasi, teknologi, bisnis, dan kreativitas digital.</p>
     </div>
+</div>
+
+<!-- POPUP 4 -->
+<div class="popup" id="popup4">
+    <div class="popup-box">
+        <button class="close-btn">✕</button>
+        <h2>Gimana Sih Sistem Kerja Bitcoin?🤔</h2>
+        
+        <p>Bitcoin adalah mata uang digital peer-to-peer yang dibuat tanpa bank atau pihak pusat. Tujuannya adalah agar transaksi bisa dilakukan langsung antar orang di internet tanpa risiko double-spending (menggunakan uang yang sama dua kali). Semua transaksi dicatat di blockchain, yaitu buku besar digital yang terdistribusi di seluruh jaringan komputer. Setiap blok berisi sejumlah transaksi dan terhubung ke blok sebelumnya, sehingga data tidak bisa diubah atau dimanipulasi.</p>
+        
+        <p>Untuk menambahkan blok baru ke blockchain, diperlukan proses Proof-of-Work (PoW). Komputer-komputer di jaringan, yang disebut penambang atau miner, bersaing memecahkan teka-teki matematika kompleks. Miner yang berhasil menambahkan blok baru akan mendapatkan Bitcoin baru sebagai hadiah, sekaligus memvalidasi transaksi yang ada di blok tersebut. Proses ini disebut mining dan sekaligus menjaga keamanan jaringan.</p>
+        
+        <p>Transaksi Bitcoin dilakukan dengan tanda tangan digital, sehingga aman dan tidak bisa dipalsukan. Jaringan Bitcoin desentralisasi, artinya semua komputer (node) memiliki salinan blockchain, sehingga jika ada yang mencoba curang, jaringan akan menolaknya. Selain itu, jumlah Bitcoin dibatasi maksimal 21 juta koin, sehingga Bitcoin bersifat langka dan nilainya terjaga.</p>
+        
+        <p>Secara sederhana, Bitcoin bekerja melalui kombinasi blockchain, Proof-of-Work, mining, dan sistem desentralisasi. Semua orang bisa ikut serta sebagai pengguna atau penambang, transaksi tercatat secara permanen, dan Bitcoin baru tercipta melalui mining, yang kemudian bisa digunakan sebagai uang digital atau diubah menjadi fiat.</p>
+        
+        <p>Setelah memiliki Bitcoin, kita bisa menjadikannya sebagai alat investasi. Cara yang paling umum adalah membeli Bitcoin di exchange (platform jual-beli cryptocurrency seperti Binance, Indodax, atau Luno) lalu menyimpannya di wallet digital. Investasi Bitcoin bisa dilakukan dengan dua strategi:</p>
+        
+        <p>1. HODL (hold) menahan Bitcoin dalam jangka panjang dengan harapan nilainya naik.</p>
+
+        <p>2. Trading aktif membeli dan   menjual Bitcoin sesuai pergerakan harga untuk mengambil keuntungan jangka pendek.</p>
+
+         <p>Bitcoin juga bisa digunakan sebagai alat pembayaran, tapi jika ingin diubah menjadi uang biasa (fiat), ada beberapa cara:</p>
+         
+         <p>1. Menjual di exchange tukar Bitcoin ke mata uang lokal (misal IDR) dan transfer ke rekening bank.</p>
+         
+         <p>2. P2P (Peer-to-Peer) jual langsung ke orang lain, mereka membayar ke rekening atau dompet digitalmu.</p>
+         
+         <p>3. ATM Bitcoin (jika tersedia) beberapa ATM memungkinkan menukar Bitcoin langsung menjadi uang tunai.</p>
+         
+         <p>Dengan cara ini, Bitcoin bisa berfungsi sebagai aset digital yang bisa diinvestasikan atau diuangkan. Intinya, alurnya: dapatkan Bitcoin, simpan atau trading jika ingin, tukar menjadi uang fiat.</p>
+       </div>
+  </div>
+  
+<!-- POPUP 5 -->
+<div class="popup" id="popup5">
+    <div class="popup-box">
+        <button class="close-btn">✕</button>
+        <h2>Gimana Sih Sistem Kerja Blockchain?</h2>
+        
+        <p>Blockchain adalah sebuah buku catatan digital besar yang tidak disimpan di satu tempat, tetapi disalin ke ribuan komputer di seluruh dunia. Setiap kali ada transaksi atau data baru, informasi itu dicek bersama-sama oleh komputer-komputer tersebut untuk memastikan kebenarannya.</p>
+        
+        <p>Setelah valid, data tersebut dimasukkan ke dalam sebuah blok, lalu blok itu dikunci dan disambungkan ke blok sebelumnya, membentuk rantai blok yang tidak bisa diubah atau dihapus. Karena dicatat oleh banyak komputer sekaligus dan setiap blok terkunci secara kriptografi, sistem blockchain menjadi sangat aman, transparan, dan tidak bisa dimanipulasi, tanpa perlu bergantung pada bank, perusahaan, atau pihak pusat mana pun.</p>
+</div>
 </div>
 
 <script>

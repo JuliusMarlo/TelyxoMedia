@@ -22,6 +22,8 @@ body {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom-right-radius: 25px;
+            border-bottom-left-radius: 25px;
         }
 
         .left-header {
@@ -90,9 +92,11 @@ body {
     width: 88,9%;
     padding: 15px 20px;
     display: flex;
+    flex-direction: column;
+    gap: 5px;
     justify-content: center;
     align-items: center;
-    top: 88px;
+    margin-top: 12px;
     z-index: 1000;   /* di bawah Footer3 */
 }
 
@@ -115,7 +119,10 @@ footer2 {
             font-family: Arial, sans-serif;
             font-size: 12px;
             width: 90%;
-            margin-top: 7px;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
         }
 
         .crypto-item {
@@ -174,7 +181,6 @@ footer2 {
   background-image: url('bg-menu.jpeg');
   background-size: cover;
   background-position: center;
-  padding: 20px;
 }
 
 /* Pop-up muncul dari kiri */
@@ -188,21 +194,22 @@ footer2 {
 #news {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 5px;
 }
 
 /* Card */
 .card {
   background: #ffffff;
   border-radius: 10px;
-  padding: 12px;
+  padding: 5px;
   box-shadow: 0 6px 18px rgba(15,23,42,0.06);
   border: 1px solid rgba(0,0,0,0.03);
+  margin-top: 10px;
 }
 
 .card .title {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 8px;
+  font-weight: 300;
   margin-bottom: 8px;
   color: #0f172a;
 }
@@ -214,13 +221,13 @@ footer2 {
   align-items: center;
   margin-bottom: 8px;
   color: #6b7280;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .card .excerpt {
   color: #1f2937;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 12px;
   margin-bottom: 8px;
 }
 
@@ -228,10 +235,55 @@ footer2 {
   display: inline-block;
   text-decoration: none;
   color: #2563eb;
-  font-weight: 600;
-  font-size: 13px;
+  font-weight: 300;
+  font-size: 12px;
 }
-        
+.usd-box {
+    max-width: 300px;
+    padding: 15px;
+    margin: 15px auto;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: Arial, sans-serif;
+    margin-top: 5px;
+}
+
+.usd-input {
+    width: 92%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.usd-btn {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.usd-btn:hover {
+    background: #0069d9;
+}
+
+.usd-result {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.btn-popup {
+    padding: 5px;
+    border-radius: 13px;
+    background-color: #1167B1;
+    color: white;
+    border: none;
+    outline: white;
+    cursor: pointer;
+}
         /* ============================
    FIX TAMPILAN DESKTOP
    ============================ */
@@ -285,8 +337,17 @@ alt="TikTok" class="logo-tt">
 </header>
 
 <footer1>
-    Harga Crypto
+    Crypto List
     <div id="crypto-prices"></div>
+    <div class="usd-box">
+  <h3>USD ➜ IDR</h3>
+
+  <input id="usd" type="number" placeholder="Masukkan USD" class="usd-input">
+
+  <button onclick="convertUSD()" class="usd-btn">Konversi</button>
+
+  <p id="result" class="usd-result"></p>
+</div>
 </footer1>
 
 <div id="news">
@@ -295,14 +356,14 @@ alt="TikTok" class="logo-tt">
 
 <div class="popup" id="popup">
   <h3>Menu</h3>
-  <button onclick="location.href='hargacrypto.html'">📈 Harga Crypto</button>
-  <button onclick="location.href='beritah.html'">📰 Berita</button>
-  <button onclick="location.href='modul.html'">📒 Modul</button>
-  <button onclick="location.href='chat.html'">✉️ Pesan</button>
+  <button class ="btn-popup" onclick="location.href='hargacrypto.html'">📈 Harga Crypto</button>
+  <button class ="btn-popup" onclick="location.href='beritah.html'">📰 Berita</button>
+  <button class ="btn-popup" onclick="location.href='modul.html'">📒 Modul</button>
+  <button class ="btn-popup" onclick="location.href='chat.html'">✉️ Pesan</button>
          </div>
          
 <footer2>
-    &copy; 2026 WYC Group.
+    &copy; 2026 Telyxo Foundation.
 </footer2>
 
 <script>
@@ -442,6 +503,20 @@ function stripHtml(html) {
 
 loadNews();
 setInterval(loadNews, REFRESH_INTERVAL_MS);
+
+async function convertUSD() {
+  const usd = document.getElementById("usd").value;
+  if (!usd) return;
+
+  const api = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
+  const data = await api.json();
+
+  const rate = data.rates.IDR;
+  const idr = usd * rate;
+
+  document.getElementById("result").innerText =
+    usd + " USD = Rp " + idr.toLocaleString("id-ID");
+}
 </script>
 
 </body>
